@@ -20,13 +20,13 @@ public:
 		if(player->getRace() == RACE_VRYKUL)
 		{
 		case GENDER_FEMALE:
-			if(player->!HasSpell(87841))
+			if(!player->HasSpell(87841))
 			{
 				player->learnSpell(87841);
 			}
 		break;
 		case GENDER_MALE:
-			if(player->!HasSpell(87842))
+			if(!player->HasSpell(87842))
 			{
 				player->learnSpell(87842);
 			}
