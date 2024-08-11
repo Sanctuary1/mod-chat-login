@@ -7,6 +7,8 @@
 #include "Configuration/Config.h"
 #include "ChannelMgr.h"
 #include "Chat.h"
+#include "Unit.h"
+#include "SpellScript.h"
 
 class LoginChat : public PlayerScript{
 public:
@@ -14,26 +16,30 @@ public:
     LoginChat() : PlayerScript("LoginChat") { }
 
     void OnLogin(Player* player) override {
-	uint8 gender = player->getGender();
-    switch (gender)
-    {
-		if(player->getRace() == RACE_VRYKUL)
+		uint8 gender = player->getGender();
+		switch (gender)
 		{
-		case GENDER_FEMALE:
-			if(!player->HasSpell(87841))
-			{
-				player->learnSpell(87841);
-			}
-		break;
-		case GENDER_MALE:
-			if(!player->HasSpell(87842))
-			{
-				player->learnSpell(87842);
-			}
-		break;
-		} 
-    }
-	
+			case GENDER_FEMALE:
+				if(player->HasAura(68996))
+				{
+					player->SetDisplayId(19723);
+				}
+				if(player->HasAura(68992))
+				{
+					player->SetDisplayId(2231);
+				}
+			break;
+			case GENDER_MALE:
+				if(player->HasAura(68996))
+				{
+					player->SetDisplayId(2231);
+				}
+				if(player->HasAura(68992))
+				{
+					player->SetDisplayId(2243);
+				}
+			break;
+		}
     }
 };
 
